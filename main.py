@@ -19,7 +19,7 @@ def find_and_replace(words_dict, input_epub, output_epub):
     for item in book.get_items():
 
         if (isinstance(item, epub.EpubHtml)):
-            soup = BeautifulSoup(item.get_content(), 'html.parser')
+            soup = BeautifulSoup(item.get_body_content(), 'html.parser')
 
             for old_word, new_word in words_dict.items():
                 for text in soup.find_all(string=True):
