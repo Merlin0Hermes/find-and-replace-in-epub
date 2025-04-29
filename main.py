@@ -23,9 +23,8 @@ def find_and_replace(words_dict, input_epub, output_epub):
 
             for old_word, new_word in words_dict.items():
                 for text in soup.find_all(string=True):
-                    if old_word in text:
-                        new_text = text.replace(old_word, new_word)
-                        text.replace_with(new_text)
+                    new_text = text.replace(old_word, new_word)
+                    text.replace_with(new_text)
             
             item.set_content(str(soup))
 
