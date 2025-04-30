@@ -8,8 +8,8 @@ def make_directory(dir_name):
         Path(dir_name).mkdir(parents=True, exist_ok=True)
         return Path(dir_name)
     except Exception as e:
-        print(f"An error occured")
-        
+        print(f"An error occured {e}")
+
 
 def clear_terminal():
     if platform.system == "Windows":
