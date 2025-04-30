@@ -22,4 +22,4 @@ Path of the original .epub file to replace words from. The original .epub file w
 The path can be relative or absolute or just the name of the file if it is present in the current directory.  
 
 #### destination_path
-The name the modified epub file you want to save. It can also be a simply something like 'ouput.epub' or the relative or absolute path to save the file. A new epub file will be created at the specified path.
+The (optional) name of the modified epub file you want to save. A new epub file will be created at the specified path. By default saves as epub/output.epub
