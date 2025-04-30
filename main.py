@@ -1,4 +1,3 @@
-import re
 import argparse
 from ebooklib import epub
 from bs4 import BeautifulSoup
@@ -8,7 +7,7 @@ from utils import * # user defined functions
 
 def find_and_replace(words_dict, input_epub, output_epub):
 
-    pattern = re.compile('|'.join(re.escape(key) for key in words_dict.keys()))
+    pattern = get_pattern(words_dict) # function from utils.py
 
     book = epub.read_epub(input_epub)
     i = 1
@@ -16,12 +15,9 @@ def find_and_replace(words_dict, input_epub, output_epub):
 
         if (isinstance(item, epub.EpubHtml)):
             soup = BeautifulSoup(item.get_body_content(), 'html.parser')
-
-            def replace_words(text):
-                return pattern.sub(lambda match: words_dict[match.group(0)], text)
                 
             for text in soup.find_all(string=True):
-                new_text = replace_words(text)
+                new_text = replace_words(text, pattern, words_dict) # function from utils.py
                 text.replace_with(new_text)
             
             item.set_content(str(soup))
