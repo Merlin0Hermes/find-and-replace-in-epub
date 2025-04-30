@@ -2,9 +2,17 @@ import os
 import sys
 import csv
 import re
+import platform
 from ebooklib import epub
 from bs4 import BeautifulSoup
 from typing import Dict
+
+
+def clear_terminal():
+    if platform.system == "Windows":
+        os.system("cls")
+    else:
+        os.system("clear")
 
 
 def dict_from_csv(filename):
@@ -27,14 +35,13 @@ def find_and_replace(words_dict, input_epub, output_epub):
             def replace_words(text):
                 return pattern.sub(lambda match: words_dict[match.group(0)], text)
                 
-
             for text in soup.find_all(string=True):
                 new_text = replace_words(text)
                 text.replace_with(new_text)
             
             item.set_content(str(soup))
 
-            os.system("clear")
+            clear_terminal()
             print(f"Progress: Chapter {i}")
             i += 1
 
