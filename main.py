@@ -1,25 +1,9 @@
-import os
-import sys
-import csv
 import re
 import argparse
-import platform
 from ebooklib import epub
 from bs4 import BeautifulSoup
-from typing import Dict
 
-
-def clear_terminal():
-    if platform.system == "Windows":
-        os.system("cls")
-    else:
-        os.system("clear")
-
-
-def dict_from_csv(filename):
-    with open(filename, "r") as file:
-        reader = csv.DictReader(file)
-        return {row["find"]: row["replace"] for row in reader}
+from utils import * # user defined functions
 
 
 def find_and_replace(words_dict, input_epub, output_epub):
@@ -49,7 +33,6 @@ def find_and_replace(words_dict, input_epub, output_epub):
     epub.write_epub(output_epub, book)
 
 
-
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("replace_csv", help="path to csv file with find,replace values")
@@ -59,10 +42,12 @@ def main():
     args = parser.parse_args()
     words_dict = dict_from_csv(args.replace_csv)
     input_epub = args.source
+
     if (args.output):
         output_epub = args.output
     else:
-        output_epub = "output.epub"
+        path = make_directory("epub")
+        output_epub = path / "output.epub"
 
     find_and_replace(words_dict, input_epub, output_epub)
 
