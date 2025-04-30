@@ -19,10 +19,14 @@ def clear_terminal():
         os.system("clear")
 
 
-def dict_from_csv(filename):
+def dict_from_csv(filename, whitespace=False):
     with open(filename, "r") as file:
         reader = csv.DictReader(file)
-        return {row["find"]: row["replace"] for row in reader}
+        if (whitespace):
+            return {row["find"]: row["replace"] for row in reader}
+        else:
+            return {row["find"].strip(): row["replace"].strip() for row in reader}
+
 
 
 def get_pattern(words_dict):

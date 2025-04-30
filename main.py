@@ -34,9 +34,12 @@ def main():
     parser.add_argument("replace_csv", help="path to csv file with find,replace values")
     parser.add_argument("source", help="path to the source/input epub file")
     parser.add_argument("-o", "--output", help="path (or name) to save the output epub, defaults to epub/output.epub")
+    parser.add_argument("-w", "--whitespace", action="store_true" 
+                        help="does not ignore the leading and trailing whitespace in the csv file. (overrides default behaviour of"
+                         + " stripping away whitespace)")
     
     args = parser.parse_args()
-    words_dict = dict_from_csv(args.replace_csv)
+    words_dict = dict_from_csv(args.replace_csv, args.whitespace)
     input_epub = args.source
 
     if (args.output):
