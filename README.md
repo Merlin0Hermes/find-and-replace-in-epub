@@ -5,7 +5,7 @@ This is a simple python script that finds and replaces word(s) in .epub files.
 ## Usage:
 ```python main.py <csv_file> <source_path> -o <destination_path>```  
 
-For example, ```python main.py replace.csv input.epub output.epub```
+For example, ```python main.py replace.csv input.epub -o output.epub```
 ### Command-line arguements:
 
 #### csv_file  
