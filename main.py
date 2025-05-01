@@ -39,14 +39,15 @@ def main():
                          + " stripping away whitespace)")
     
     args = parser.parse_args()
-    words_dict = dict_from_csv(args.replace_csv, args.whitespace)
-    input_epub = args.source
+    words_dict = dict_from_csv(Path(args.replace_csv), args.whitespace)
+    input_epub = Path(args.source)
 
     if (args.output):
-        output_epub = args.output
+        output_epub = Path(args.output)
     else:
         path = make_directory("epub")
-        output_epub = path / "output.epub"
+        output_epub = path / f"{input_epub.stem}-new.epub"
+        print(output_epub)
 
     find_and_replace(words_dict, input_epub, output_epub)
 
