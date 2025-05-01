@@ -3,7 +3,7 @@
 This is a simple python script that finds and replaces word(s) in .epub files. 
 
 ## Usage:
-```python main.py <csv_file> <source_path> <destination_path>```  
+```python main.py <csv_file> <source_path> -o <destination_path>```  
 
 For example, ```python main.py replace.csv input.epub output.epub```
 ### Command-line arguements:
@@ -22,4 +22,4 @@ Path of the original .epub file to replace words from. The original .epub file w
 The path can be relative or absolute or just the name of the file if it is present in the current directory.  
 
 #### destination_path
-The (optional) name of the modified epub file you want to save. A new epub file will be created at the specified path. By default saves as epub/output.epub
+The (optional) name of the modified epub file you want to save. Specify with flag ```-o <filepath>``` A new epub file will be created at the specified path. By default saves at epub/output.epub.
